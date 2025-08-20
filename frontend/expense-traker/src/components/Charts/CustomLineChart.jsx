@@ -17,9 +17,12 @@ const CustomLineChart = ({ data }) => {
         return null;
     };
 
+    // Add debugging to see if data is being passed
+    console.log("CustomLineChart - data received:", data);
+
     return <div className='bg-white'>
         <ResponsiveContainer width="100%" height={300}>
-            <AreaChart>
+            <AreaChart data={data}>  {/* ← Add the data prop here */}
               <defs>
               <linearGradient id='incomeGradient' x1='0' y1='0' x2='0' y2='1'>
                 <stop offset="5%" stopColor='#875cf5' stopOpacity={0.4}/>

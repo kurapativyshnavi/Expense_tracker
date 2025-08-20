@@ -4,23 +4,23 @@ import CustomPieChart from '../Charts/CustomPieChart';
 
 const COLORS = ["#875CF5","#FA2C37","#FF6900","#4f39f6"];
 
-const RecentIncomeWithChart = ({ data, totalIncome }) => {
+// Changed prop name from totalIncome to last60DaysTotal for clarity
+const RecentIncomeWithChart = ({ data, last60DaysTotal }) => {
   const [chartData, setChartData] = useState([]);
 
- const prepareChartData = () => {
+  const prepareChartData = () => {
     const dataArr = data?.map((item) => ({
         name: item?.source,
         amount: item?.amount,
     }));
 
     setChartData(dataArr);
- }
+  }
 
- useEffect(() => {
+  useEffect(() => {
     prepareChartData();
-
     return () => {};
- }, [data]);
+  }, [data]);
 
   return (
     <div className="card">
@@ -31,7 +31,7 @@ const RecentIncomeWithChart = ({ data, totalIncome }) => {
       <CustomPieChart
         data={chartData}
         label="Last 60 Days Income"
-        totalAmount={`$${totalIncome}`}
+        totalAmount={`$${last60DaysTotal}`}  // Changed from totalIncome to last60DaysTotal
         showTextAnchor
         colors={COLORS}
       />

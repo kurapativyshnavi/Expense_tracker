@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react'
-import {prepareExpenseLineChartData} from "../../utils/helper"
+import {prepareExpenseBarChartData} from "../../utils/helper"  // Use bar chart data preparation
 import { LuPlus } from "react-icons/lu"
-import CustomLineChart from '../Charts/CustomLineChart'
+import CustomBarChart from '../Charts/CustomBarChart'  // Use bar chart component
 
 const ExpenseOverview = ({ transactions, onExpenseIncome}) => {
     const [chartData, setChartData] = useState([]);
 
     useEffect(() => {
-        const result = prepareExpenseLineChartData(transactions)
+        const result = prepareExpenseBarChartData(transactions)  // Use bar chart data function
         setChartData(result);
 
         return () => {};
     }, [transactions]);
+    
     return <div className='card'>
         <div className='flex items-center justify-between'>
             <div className=''>
@@ -28,7 +29,7 @@ const ExpenseOverview = ({ transactions, onExpenseIncome}) => {
         </div>
 
         <div className='mt-10'>
-           <CustomLineChart data={chartData} />
+           <CustomBarChart data={chartData} />  {/* Use bar chart like income page */}
         </div>
     </div>
 }
